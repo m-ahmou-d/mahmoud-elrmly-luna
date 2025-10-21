@@ -10,27 +10,30 @@
 </head>
 
 <body>
-  <nav aria-label="Main">
-    <a href="#About">About</a>
-    <a href="#Experience">Experience</a>
-    <a href="#Skills">Skills</a>
-    <a href="#Projects">Projects</a>
-    <a href="#Connect">Connect</a>
-  </nav>
+  <header>
+    <nav aria-label="Main">
+      <a href="#About">About</a>
+      <a href="#Experience">Experience</a>
+      <a href="#Skills">Skills</a>
+      <a href="#Projects">Projects</a>
+      <a href="#Connect">Connect</a>
+      <a href="#LeaveMessage">Leave a Message</a>
+    </nav>
+  </header>
 
   <h1>Mahmoud Elrmly</h1>
 
   <section id="About">
     <h2>About</h2>
-    <p>I am learning web development through Code the Dream. I enjoy problem-solving and practicing Git, HTML, and JavaScript.</p>
+    <p>Hello! I'm Mahmoud, a student developer learning to build web applications through Code the Dream.</p>
   </section>
 
   <section id="Experience">
     <h2>Experience</h2>
     <ul>
-      <li>Intro to Programming (Functions, Loops, Arrays, Objects)</li>
-      <li>HTML & Git basics</li>
-      <li>JavaScript practice</li>
+      <li>JavaScript and HTML Fundamentals</li>
+      <li>Working with Git and GitHub</li>
+      <li>Basic CSS Styling</li>
       <li>Fluent in Arabic and English, learning Spanish</li>
     </ul>
   </section>
@@ -52,7 +55,29 @@
       <li><a href="https://www.instagram.com/m.ahmou.d/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
     </ul>
   </section>
-<script src="js/index.js"></script>
+
+  <section id="LeaveMessage">
+    <h2>Leave a Message</h2>
+    <form name="leave_message">
+      <label for="usersName">Name:</label><br>
+      <input type="text" name="usersName" required /><br><br>
+
+      <label for="usersEmail">Email:</label><br>
+      <input type="email" name="usersEmail" required /><br><br>
+
+      <label for="usersMessage">Message:</label><br>
+      <textarea name="usersMessage" required></textarea><br><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section id="messages">
+    <h2>Messages</h2>
+    <ul></ul>
+  </section>
+
+  <script src="js/index.js"></script>
 </body>
 </html>
 

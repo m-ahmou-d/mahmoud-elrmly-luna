@@ -61,3 +61,38 @@ messageForm.addEventListener("submit", function(event) {
 
   messageForm.reset();
 });
+
+// ---------- FETCH GITHUB REPOS (Lesson 13) ----------
+
+// Fetch list of repositories from GitHub API
+fetch("https://api.github.com/users/m-ahmou-d/repos")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json(); // Parse response as JSON
+  })
+  .then((repositories) => {
+    console.log("Repositories fetched:", repositories);
+
+    // Select Projects section and its <ul>
+    const projectSection = document.querySelector("#Projects");
+    const projectList = projectSection.querySelector("ul");
+
+    // Loop through each repository and create a list item
+    for (let i = 0; i < repositories.length; i++) {
+      const project = document.createElement("li");
+      project.textContent = repositories[i].name; // Repository name
+      projectList.appendChild(project);
+    }
+  })
+  .catch((error) => {
+    console.error("There was a problem with the fetch operation:", error);
+
+    // Display a friendly error message on the page :D
+    const projectSection = document.querySelector("#Projects");
+    const projectList = projectSection.querySelector("ul");
+    const errorItem = document.createElement("li");
+    errorItem.textContent = "Error loading repositories. Please try again later.";
+    projectList.appendChild(errorItem);
+  });

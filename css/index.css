@@ -390,3 +390,45 @@ nav a:hover { text-decoration: underline; }
     width: 100%;
   }
 }
+
+/* ====== Lesson 13! Project Repository List Styling ====== */
+#Projects {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#Projects h2 {
+  margin-bottom: 10px;
+  color: #22c55e;
+}
+
+#Projects ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#Projects li {
+  background-color: #0b1220;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e5e7eb;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+#Projects li:hover {
+  background-color: #22c55e;
+  color: #0b1220;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  #Projects ul {
+    flex-direction: column;
+  }
+}

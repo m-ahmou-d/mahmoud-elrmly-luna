@@ -293,3 +293,142 @@ nav a:hover { text-decoration: underline; }
 @media (min-width: 992px) {
   #Skills ul { gap: 14px; }
 }
+
+/* ====== For Lesson 12! Message Form and Message List Styles ====== */
+
+#LeaveMessage form {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#LeaveMessage label {
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+#LeaveMessage input,
+#LeaveMessage textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+#LeaveMessage button {
+  align-self: flex-start;
+  background-color: #22c55e;
+  color: #0f172a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+#LeaveMessage button:hover {
+  filter: brightness(1.1);
+}
+
+/* Messages list styling */
+#messages {
+  background-color: #111827;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#messages h2 {
+  margin-bottom: 10px;
+}
+
+#messages ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#messages li {
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+#messages a {
+  color: #22c55e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#messages a:hover {
+  text-decoration: underline;
+}
+
+#messages button {
+  margin-top: 10px;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#messages button:hover {
+  background-color: #ef4444;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 600px) {
+  #LeaveMessage form {
+    padding: 15px;
+  }
+
+  #LeaveMessage button {
+    width: 100%;
+  }
+}
+
+/* ====== Lesson 13! Project Repository List Styling ====== */
+#Projects {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#Projects h2 {
+  margin-bottom: 10px;
+  color: #22c55e;
+}
+
+#Projects ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#Projects li {
+  background-color: #0b1220;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e5e7eb;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+#Projects li:hover {
+  background-color: #22c55e;
+  color: #0b1220;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  #Projects ul {
+    flex-direction: column;
+  }
+}

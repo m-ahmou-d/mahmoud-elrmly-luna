@@ -1,37 +1,27 @@
 // ---------- FOOTER ----------
 const body = document.body;
-
-// Creating and appending a <footer>
 const footer = document.createElement('footer');
 body.appendChild(footer);
 
-// Grabing the current year dynamically
 const today = new Date();
 const thisYear = today.getFullYear();
 
-// Creating a <p> for the copyright text
 const copyright = document.createElement('p');
-// Stretch goal: ©  :D
 copyright.innerHTML = `&copy; Mahmoud Elrmly ${thisYear}`;
-
-// Put this in the fotter
 footer.appendChild(copyright);
 
 // ---------- SKILLS ----------
 const skills = ["JavaScript", "HTML", "CSS", "Git", "GitHub"];
-
-// Selecting the skills section and its <ul>
 const skillsSection = document.querySelector('#Skills');
 const skillsList = skillsSection.querySelector('ul');
 
-// Looping through skills and add <li> for each
-for (let i = 0; i < skills.length; i++) {
-  const skill = document.createElement('li');
-  skill.textContent = skills[i];
-  skillsList.appendChild(skill);
-}
+skills.forEach(skill => {
+  const skillItem = document.createElement('li');
+  skillItem.textContent = skill;
+  skillsList.appendChild(skillItem);
+});
 
-// Message Form
+// ---------- MESSAGE FORM ----------
 const messageForm = document.forms["leave_message"];
 messageForm.addEventListener("submit", function(event) {
   event.preventDefault();
@@ -40,21 +30,15 @@ messageForm.addEventListener("submit", function(event) {
   const usersEmail = event.target.usersEmail.value;
   const usersMessage = event.target.usersMessage.value;
 
-  console.log(usersName, usersEmail, usersMessage);
-
   const messageSection = document.querySelector("#messages");
   const messageList = messageSection.querySelector("ul");
   const newMessage = document.createElement("li");
 
-  newMessage.innerHTML = `<a href="mailto:${usersEmail}">${usersName}</a> <span> wrote: ${usersMessage}</span>`;
+  newMessage.innerHTML = `<a href="mailto:${usersEmail}">${usersName}</a> wrote: ${usersMessage}`;
 
   const removeButton = document.createElement("button");
-  removeButton.innerText = "remove";
-  removeButton.type = "button";
-  removeButton.addEventListener("click", function() {
-    const entry = removeButton.parentNode;
-    entry.remove();
-  });
+  removeButton.textContent = "Remove";
+  removeButton.addEventListener("click", () => newMessage.remove());
 
   newMessage.appendChild(removeButton);
   messageList.appendChild(newMessage);
@@ -62,37 +46,34 @@ messageForm.addEventListener("submit", function(event) {
   messageForm.reset();
 });
 
-// ---------- FETCH GITHUB REPOS (Lesson 13) ----------
+// ---------- FETCH GITHUB REPOS ----------
+async function fetchRepositories() {
+  try {
+    const response = await fetch("https://api.github.com/users/m-ahmou-d/repos");
+    if (!response.ok) throw new Error("Network response was not ok");
 
-// Fetch list of repositories from GitHub API
-fetch("https://api.github.com/users/m-ahmou-d/repos")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json(); // Parse response as JSON
-  })
-  .then((repositories) => {
-    console.log("Repositories fetched:", repositories);
+    const repositories = await response.json();
 
-    // Select Projects section and its <ul>
-    const projectSection = document.querySelector("#Projects");
+    const projectSection = document.getElementById("Projects");
     const projectList = projectSection.querySelector("ul");
 
-    // Loop through each repository and create a list item
-    for (let i = 0; i < repositories.length; i++) {
+    repositories.forEach(repo => {
       const project = document.createElement("li");
-      project.textContent = repositories[i].name; // Repository name
-      projectList.appendChild(project);
-    }
-  })
-  .catch((error) => {
-    console.error("There was a problem with the fetch operation:", error);
+      // Optional stretch: make repo names clickable
+      const link = document.createElement("a");
+      link.href = repo.html_url;
+      link.textContent = repo.name;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      project.appendChild(link);
 
-    // Display a friendly error message on the page :D
-    const projectSection = document.querySelector("#Projects");
-    const projectList = projectSection.querySelector("ul");
-    const errorItem = document.createElement("li");
-    errorItem.textContent = "Error loading repositories. Please try again later.";
-    projectList.appendChild(errorItem);
-  });
+      projectList.appendChild(project);
+    });
+  } catch (error) {
+    console.error("Error fetching repositories:", error);
+    const projectList = document.querySelector("#project-list");
+    projectList.innerHTML = `<li style="color: red;">Failed to load projects.</li>`;
+  }
+}
+
+fetchRepositories();
